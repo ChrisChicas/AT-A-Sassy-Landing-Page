@@ -1,3 +1,6 @@
+@use "./btnConfig";
+@use "./config";
+@use "./utilities" as util;
 
 * {
   box-sizing: border-box;
@@ -6,8 +9,8 @@
 }
 
 body {
-  background-color: $light-color;
-  font-family: $font-stack;
+  background-color: config.$light-color;
+  font-family: config.$font-stack;
   line-height: 1;
 }
 
@@ -28,6 +31,44 @@ a {
   // 1. $variables
   // 2. nesting (dont forget about the ampersand (&) parent selector!)
   // 3. At-Rules
+  @include util.set-bg(config.$primary-color);
+  height: 600px;
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    ul {
+      display: flex;
+      list-style-type: none;
+    }
+
+    li {
+      padding: 15px;
+    }
+
+    a {
+      color: util.text-color-picker(config.$primary-color);
+
+      &:hover {
+        color: config.$secondary-color;
+      }
+    }
+  }
+
+  &-content{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1em;
+
+
+    img {
+      width: 50%;
+    }
+  }
 }
 
 // This code is related to some of the aspects of SCSS we have yet to cover.
